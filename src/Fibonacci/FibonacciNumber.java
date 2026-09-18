@@ -1,5 +1,8 @@
 package Fibonacci;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class FibonacciNumber {
 
     /**
@@ -14,12 +17,23 @@ public class FibonacciNumber {
      * @return the nth Fibonacci number
      * @throws IllegalArgumentException if n is negative or greater than 92
      */
-    public static long fibonacci(int n) {
-        // TODO: Implement the calculation and input validation here.
-        if (n < 2){
-            return n;
-        }else {
-            return fibonacci(n-1) + fibonacci(n-2);
+
+    public static long mapFibonacci(int n) {
+        if (n < 0 || n > 92) {
+            throw new IllegalArgumentException("n must be between 0 and 92, inclusive.");
         }
+
+        Map<Integer, Long> fib = new HashMap<>();
+        fib.put(0, 0L);
+        fib.put(1, 1L);
+
+        for (int i = 2; i <= n; i++) {
+            fib.put(i, fib.get(i - 1) + fib.get(i - 2));
+        }
+        return fib.get(n);
+    }
+
+    public static long fibonacci(int n) {
+        return mapFibonacci(n);
     }
 }
