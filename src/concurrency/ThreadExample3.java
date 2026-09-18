@@ -1,3 +1,5 @@
+package concurrency;
+
 public class ThreadExample3 {
     public static class MyRunnable implements Runnable{
 

@@ -1,3 +1,5 @@
+package concurrency;
+
 public class DeadLockThreadExample {
 
     private final Object lock1 = new Object();

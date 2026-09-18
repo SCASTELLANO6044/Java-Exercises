@@ -1,3 +1,5 @@
+package concurrency;
+
 public class ThreadExample8 {
 
     public static class StopRunnable implements Runnable{
