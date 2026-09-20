@@ -8,7 +8,7 @@ public class BreadthFirstSearch {
      * Return a path with the fewest edges from start to goal, including both.
      * Break ties by BFS discovery order, inspecting neighbors in list order.
      * Compare nodes by identity, not value. Cycles and repeated edges are allowed.
-     *
+     * <p>
      * Return an empty list if either endpoint is null or goal is unreachable.
      * If start == goal and both are non-null, return a list containing start.
      * Do not modify the graph or create replacement nodes.
@@ -61,7 +61,6 @@ public class BreadthFirstSearch {
 
     /** Optional helper: reconstruct a start-to-goal path from your predecessor map. */
     public static List<Node> traceback(Map<Node, Node> nodeNodeMap, Node finalNode){
-        // TODO: Implement this helper if you use it in shortestPath.
         List<Node> nodeList = new ArrayList<>();
 
         while (nodeNodeMap.containsKey(finalNode)){
