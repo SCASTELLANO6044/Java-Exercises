@@ -22,8 +22,6 @@ public class BreadthFirstSearch {
     public static List<Node> shortestPath(Node start, Node goal) {
         // TODO: Implement BFS to find the shortest path to goal.
 
-        Map<Node, Node> nodeNodeMap = new HashMap<>();
-        Queue<Node> visitedNodeQueue = new LinkedList<>();
         List<Node> result = new ArrayList<>();
 
         if (start == null || goal == null){
@@ -35,18 +33,26 @@ public class BreadthFirstSearch {
             return result;
         }
 
-        nodeNodeMap.put(start, null);
+        Queue<Node> openQueue = new LinkedList<>();
+        Map<Node, Node> nodeNodeMap = new HashMap<>();
 
-        while (start != null){
-            for(Node node : start.neighbors){
-                nodeNodeMap.put(node,start);
-                if (node == goal){
-                    result = traceback(nodeNodeMap, node);
-                    return result;
+        nodeNodeMap.put(start, null);
+        openQueue.add(start);
+
+        while (!openQueue.isEmpty()){
+            start = openQueue.remove();
+
+            for (Node node: start.neighbors){
+                if(nodeNodeMap.containsKey(node)){
+                    continue;
                 }
-                visitedNodeQueue.add(node);
+
+                nodeNodeMap.put(node, start);
+                if (node == goal){
+                    return traceback(nodeNodeMap, node);
+                }
+                openQueue.add(node);
             }
-            start = visitedNodeQueue.remove();
         }
 
         return result;

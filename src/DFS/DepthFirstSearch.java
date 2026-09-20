@@ -35,12 +35,10 @@ public class DepthFirstSearch {
         }
 
         Stack<Node> openStack = new Stack<>();
-        Set<Node> closedList = new HashSet<>();
         Map<Node, Node> nodeNodeMap = new HashMap<>();
 
 
         nodeNodeMap.put(start, null);
-        closedList.add(start);
         openStack.push(start);
 
         while (!openStack.isEmpty()) {
@@ -48,12 +46,11 @@ public class DepthFirstSearch {
             boolean foundUnvisitedNeighbor = false;
 
             for (Node node : start.neighbors) {
-                if (closedList.contains(node)) {
+                if (nodeNodeMap.containsKey(node)) {
                     continue;
                 }
 
                 nodeNodeMap.put(node, start);
-                closedList.add(node);
 
                 if (node == goal) {
                     result = getPath(nodeNodeMap, node);
